@@ -7,6 +7,7 @@ import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle }
 import { toast } from "@/components/ui/sonner";
 import { Eye, EyeOff } from "lucide-react";
 import { Checkbox } from "@/components/ui/checkbox";
+import { supabase } from "@/integrations/supabase/client";
 
 export default function Signup() {
   const navigate = useNavigate();
@@ -28,19 +29,25 @@ export default function Signup() {
     setIsLoading(true);
     
     try {
-      // Placeholder for Supabase authentication
-      // const { error } = await supabase.auth.signUp({ email, password });
+      const { data, error } = await supabase.auth.signUp({
+        email,
+        password,
+        options: {
+          data: {
+            full_name: name
+          }
+        }
+      });
+
+      if (error) throw error;
       
-      // if (error) throw error;
-      
-      // Simulate a successful signup for demo purposes
-      setTimeout(() => {
+      if (data.user) {
         toast.success("Account created successfully!");
-        navigate("/login");
-      }, 1000);
-    } catch (error) {
+        navigate("/");
+      }
+    } catch (error: any) {
       console.error("Signup error:", error);
-      toast.error("Signup failed. Please try again.");
+      toast.error(error.message || "Signup failed. Please try again.");
     } finally {
       setIsLoading(false);
     }

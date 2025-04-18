@@ -1,66 +1,27 @@
-
+import { useState, useEffect } from "react";
 import { AppLayout } from "@/components/layout/AppLayout";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Progress } from "@/components/ui/progress";
-import { PieChart, LineChart, ResponsiveContainer, Pie, Cell, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend } from "recharts";
-import { ArrowDown, ArrowUp, DollarSign, Landmark, PiggyBank, Wallet } from "lucide-react";
-import { Button } from "@/components/ui/button";
-import { useEffect, useState } from "react";
-
-// Mock data for charts
-const SPENDING_DATA = [
-  { name: "Groceries", value: 500, color: "#6366F1" },
-  { name: "Rent", value: 1200, color: "#10B981" },
-  { name: "Utilities", value: 300, color: "#F59E0B" },
-  { name: "Entertainment", value: 200, color: "#EF4444" },
-  { name: "Transportation", value: 150, color: "#8B5CF6" }
-];
-
-const MONTHLY_SPENDING = [
-  { month: "Jan", amount: 2100 },
-  { month: "Feb", amount: 1900 },
-  { month: "Mar", amount: 2300 },
-  { month: "Apr", amount: 2800 },
-  { month: "May", amount: 2400 },
-  { month: "Jun", amount: 2200 },
-  { month: "Jul", amount: 2450 },
-];
-
-interface StatCardProps {
-  title: string;
-  value: string;
-  icon: React.ReactNode;
-  trend?: {
-    value: string;
-    positive: boolean;
-  };
-}
-
-const StatCard = ({ title, value, icon, trend }: StatCardProps) => (
-  <Card className="stat-card">
-    <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-      <h3 className="stat-title">{title}</h3>
-      <div className="h-4 w-4 text-muted-foreground">{icon}</div>
-    </CardHeader>
-    <CardContent>
-      <div className="stat-value">{value}</div>
-      {trend && (
-        <p className={`text-xs ${trend.positive ? "text-budget-safe" : "text-budget-danger"} flex items-center gap-1 mt-1`}>
-          {trend.positive ? <ArrowUp className="h-3 w-3" /> : <ArrowDown className="h-3 w-3" />}
-          {trend.value} from last month
-        </p>
-      )}
-    </CardContent>
-  </Card>
-);
+import { supabase } from "@/integrations/supabase/client";
+import { useProfile } from "@/hooks/useProfile";
+import { toast } from "@/components/ui/sonner";
+import { User } from "@supabase/supabase-js";
 
 export default function Dashboard() {
-  const [progressValue, setProgressValue] = useState(0);
-  
-  // Animate progress bar on component mount
+  const [user, setUser] = useState<User | null>(null);
+  const { profile, loading } = useProfile(user);
+
   useEffect(() => {
-    const timer = setTimeout(() => setProgressValue(72), 300);
-    return () => clearTimeout(timer);
+    const fetchUser = async () => {
+      const { data: { user } } = await supabase.auth.getUser();
+      setUser(user);
+    };
+
+    fetchUser();
+
+    const { data: { subscription } } = supabase.auth.onAuthStateChange((event, session) => {
+      setUser(session?.user ?? null);
+    });
+
+    return () => subscription.unsubscribe();
   }, []);
 
   return (
@@ -68,9 +29,14 @@ export default function Dashboard() {
       <div className="space-y-6">
         <div className="flex flex-col md:flex-row md:items-center justify-between">
           <h2 className="text-3xl font-bold tracking-tight">Dashboard</h2>
-          <p className="text-muted-foreground">Welcome back, Alex!</p>
+          <p className="text-muted-foreground">
+            {loading 
+              ? "Loading..." 
+              : `Welcome back, ${profile?.full_name || 'User'}!`
+            }
+          </p>
         </div>
-
+        
         <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
           <StatCard 
             title="Total Balance" 

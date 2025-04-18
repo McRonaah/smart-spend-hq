@@ -9,7 +9,8 @@ import {
   ChevronRight, 
   ChevronLeft, 
   MessageSquare,
-  PiggyBank
+  PiggyBank,
+  User  // Add User icon
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
@@ -70,13 +71,14 @@ export function Sidebar({ open, onToggle }: SidebarProps) {
         </Button>
       </div>
       <nav className="flex-1 p-3">
-        <NavItem to="/" icon={Home} label="Dashboard" open={open} />
+        <NavItem to="/dashboard" icon={Home} label="Dashboard" open={open} />
         <NavItem to="/expenses" icon={CreditCard} label="Expenses" open={open} />
         <NavItem to="/budgets" icon={Target} label="Budgets" open={open} />
         <NavItem to="/transactions" icon={Wallet} label="Transactions" open={open} />
         <NavItem to="/savings" icon={PiggyBank} label="Savings" open={open} />
         <NavItem to="/reports" icon={BarChart3} label="Reports" open={open} />
         <NavItem to="/assistant" icon={MessageSquare} label="Assistant" open={open} />
+        <NavItem to="/profile" icon={User} label="Profile" open={open} />
       </nav>
       <div className="p-3 border-t">
         <div className={cn(

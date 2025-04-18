@@ -6,6 +6,7 @@ import { Input } from "@/components/ui/input";
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { toast } from "@/components/ui/sonner";
 import { Eye, EyeOff } from "lucide-react";
+import { supabase } from "@/integrations/supabase/client";
 
 export default function Login() {
   const navigate = useNavigate();
@@ -19,19 +20,20 @@ export default function Login() {
     setIsLoading(true);
     
     try {
-      // Placeholder for Supabase authentication
-      // const { error } = await supabase.auth.signInWithPassword({ email, password });
+      const { data, error } = await supabase.auth.signInWithPassword({
+        email,
+        password
+      });
+
+      if (error) throw error;
       
-      // if (error) throw error;
-      
-      // Simulate a successful login for demo purposes
-      setTimeout(() => {
+      if (data.user) {
         toast.success("Logged in successfully!");
-        navigate("/");
-      }, 1000);
-    } catch (error) {
+        navigate("/dashboard");
+      }
+    } catch (error: any) {
       console.error("Login error:", error);
-      toast.error("Login failed. Please check your credentials.");
+      toast.error(error.message || "Login failed. Please check your credentials.");
     } finally {
       setIsLoading(false);
     }
