@@ -1,9 +1,29 @@
+
 import { useState, useEffect } from "react";
 import { AppLayout } from "@/components/layout/AppLayout";
 import { supabase } from "@/integrations/supabase/client";
 import { useProfile } from "@/hooks/useProfile";
 import { toast } from "@/components/ui/sonner";
 import { User } from "@supabase/supabase-js";
+import { DollarSign, Wallet, PiggyBank, Landmark } from "lucide-react";
+import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
+import { Progress } from "@/components/ui/progress";
+import { StatCard } from "@/components/dashboard/StatCard";
+import { MONTHLY_SPENDING, SPENDING_DATA, progressValue } from "@/data/mockData";
+import {
+  ResponsiveContainer,
+  LineChart,
+  Line,
+  CartesianGrid,
+  XAxis,
+  YAxis,
+  Tooltip,
+  Legend,
+  PieChart,
+  Pie,
+  Cell
+} from "recharts";
 
 export default function Dashboard() {
   const [user, setUser] = useState<User | null>(null);
@@ -163,7 +183,7 @@ export default function Dashboard() {
                     <p className="text-sm font-medium">{transaction.name}</p>
                     <p className="text-xs text-muted-foreground">{transaction.date}</p>
                   </div>
-                  <div className={transaction.amount > 0 ? "text-budget-safe font-medium" : "text-foreground font-medium"}>
+                  <div className={transaction.amount > 0 ? "text-green-500 font-medium" : "text-foreground font-medium"}>
                     {transaction.amount > 0 ? "+" : ""}{transaction.amount.toLocaleString('en-US', {
                       style: 'currency',
                       currency: 'USD'
