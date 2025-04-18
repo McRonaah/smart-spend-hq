@@ -1,22 +1,20 @@
 
 # SmartSpendHQ - Personal Finance Management App
 
-![SmartSpendHQ Dashboard](https://placeholder-for-dashboard-screenshot.com)
-
 SmartSpendHQ is a comprehensive budgeting and expense tracking web application built with modern web technologies. It helps users manage their finances, track expenses, set budgeting goals, and gain insights into their spending habits.
 
 ## 📱 Screenshots
 
 ### Dashboard
-![Dashboard](https://placeholder-for-dashboard-screenshot.com)
+<img width="1280" alt="image" src="https://github.com/user-attachments/assets/f7bfa5fc-91ff-4724-92d9-c5874c8dd0b3" />
 The dashboard provides a comprehensive overview of your financial health, with key metrics like total balance, monthly spending, savings, and investments. Interactive charts visualize spending patterns and category breakdown.
 
 ### Profile Page
-![Profile](https://placeholder-for-profile-screenshot.com)
+<img width="1280" alt="image" src="https://github.com/user-attachments/assets/0c8b9c81-9503-4948-baa2-3801579ff19b" />
 The profile page allows users to manage their personal information and account settings.
 
 ### Authentication
-![Authentication](https://placeholder-for-auth-screenshot.com)
+<img width="1280" alt="image" src="https://github.com/user-attachments/assets/bf2bf5f0-2a86-48e3-8a47-8980488a00c2" />
 Secure login and signup pages with email authentication.
 
 ## ✨ Features
