@@ -1,73 +1,115 @@
-# Welcome to your Lovable project
 
-## Project info
+# SmartSpendHQ - Personal Finance Management App
 
-**URL**: https://lovable.dev/projects/01c9e272-8ed6-41e0-9957-67b3b99edf15
+SmartSpendHQ is a comprehensive budgeting and expense tracking web application built with modern web technologies. It helps users manage their finances, track expenses, set budgeting goals, and gain insights into their spending habits.
 
-## How can I edit this code?
+## Features
 
-There are several ways of editing your application.
+- **User Authentication**: Secure signup and login with email/password
+- **Dashboard**: Overview of financial health with key metrics
+- **Expense Tracking**: Add, edit, delete, and categorize expenses
+- **Budget Management**: Create and track budgets by category
+- **Transaction History**: Comprehensive view of all financial transactions
+- **Savings Goals**: Set and track progress towards savings targets
+- **Financial Reports**: Visual analytics with charts and graphs
+- **AI-powered Assistant**: Get answers to financial questions
 
-**Use Lovable**
+## Technology Stack
 
-Simply visit the [Lovable Project](https://lovable.dev/projects/01c9e272-8ed6-41e0-9957-67b3b99edf15) and start prompting.
+### Frontend
+- **React** - UI library
+- **TypeScript** - Type safety
+- **Vite** - Development environment
+- **React Router** - Client-side routing
+- **Tailwind CSS** - Utility-first styling
+- **shadcn/ui** - UI component library
+- **Recharts** - Data visualization
+- **React Query** - Data fetching and caching
 
-Changes made via Lovable will be committed automatically to this repo.
+### Backend (Planned Implementation with Supabase)
+- **Supabase Authentication** - User management
+- **Supabase Database** - PostgreSQL database for data storage
+- **Supabase Functions** - Serverless functions for API endpoints
 
-**Use your preferred IDE**
+## Project Structure
 
-If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
-
-The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
-
-Follow these steps:
-
-```sh
-# Step 1: Clone the repository using the project's Git URL.
-git clone <YOUR_GIT_URL>
-
-# Step 2: Navigate to the project directory.
-cd <YOUR_PROJECT_NAME>
-
-# Step 3: Install the necessary dependencies.
-npm i
-
-# Step 4: Start the development server with auto-reloading and an instant preview.
-npm run dev
+```
+src/
+├── components/     # Reusable UI components
+│   ├── layout/     # Layout components (Sidebar, Header)
+│   └── ui/         # UI components from shadcn
+├── hooks/          # Custom React hooks
+├── lib/            # Utility functions
+├── pages/          # Page components
+└── utils/          # Helper utilities
 ```
 
-**Edit a file directly in GitHub**
+## Getting Started
 
-- Navigate to the desired file(s).
-- Click the "Edit" button (pencil icon) at the top right of the file view.
-- Make your changes and commit the changes.
+### Prerequisites
 
-**Use GitHub Codespaces**
+- Node.js (v14 or later)
+- npm or yarn
 
-- Navigate to the main page of your repository.
-- Click on the "Code" button (green button) near the top right.
-- Select the "Codespaces" tab.
-- Click on "New codespace" to launch a new Codespace environment.
-- Edit files directly within the Codespace and commit and push your changes once you're done.
+### Installation
 
-## What technologies are used for this project?
+1. Clone the repository:
+```bash
+git clone <repository-url>
+cd smartspendhq
+```
 
-This project is built with:
+2. Install dependencies:
+```bash
+npm install
+# or
+yarn install
+```
 
-- Vite
-- TypeScript
-- React
-- shadcn-ui
-- Tailwind CSS
+3. Create .env file:
+```
+VITE_SUPABASE_URL=your_supabase_url
+VITE_SUPABASE_ANON_KEY=your_supabase_anon_key
+```
 
-## How can I deploy this project?
+4. Start the development server:
+```bash
+npm run dev
+# or
+yarn dev
+```
 
-Simply open [Lovable](https://lovable.dev/projects/01c9e272-8ed6-41e0-9957-67b3b99edf15) and click on Share -> Publish.
+## Connecting to Supabase
 
-## Can I connect a custom domain to my Lovable project?
+To fully utilize SmartSpendHQ's features, you need to connect it to Supabase:
 
-Yes, you can!
+1. Create a Supabase project at https://supabase.com
+2. Set up the following tables in your Supabase database:
+   - users
+   - expenses
+   - budgets
+   - transactions
+   - saving_goals
+3. Set up authentication in the Supabase dashboard
+4. Update the .env file with your Supabase credentials
 
-To connect a domain, navigate to Project > Settings > Domains and click Connect Domain.
+## Planned Features
 
-Read more here: [Setting up a custom domain](https://docs.lovable.dev/tips-tricks/custom-domain#step-by-step-guide)
+- **Bank Account Integration**: Connect to bank accounts to automatically import transactions
+- **Recurring Expenses**: Set up and track recurring expenses
+- **Notifications**: Get alerts for budget thresholds and goals
+- **Data Export**: Export financial data in various formats
+- **Multi-currency Support**: Support for multiple currencies
+- **Mobile App**: React Native mobile application
+
+## Contributing
+
+1. Fork the repository
+2. Create your feature branch: `git checkout -b feature/amazing-feature`
+3. Commit your changes: `git commit -m 'Add some amazing feature'`
+4. Push to the branch: `git push origin feature/amazing-feature`
+5. Open a Pull Request
+
+## License
+
+This project is licensed under the MIT License.
