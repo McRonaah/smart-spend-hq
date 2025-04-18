@@ -1,55 +1,117 @@
 
 # SmartSpendHQ - Personal Finance Management App
 
+![SmartSpendHQ Dashboard](https://placeholder-for-dashboard-screenshot.com)
+
 SmartSpendHQ is a comprehensive budgeting and expense tracking web application built with modern web technologies. It helps users manage their finances, track expenses, set budgeting goals, and gain insights into their spending habits.
 
-## Features
+## 📱 Screenshots
 
-- **User Authentication**: Secure signup and login with email/password
-- **Dashboard**: Overview of financial health with key metrics
-- **Expense Tracking**: Add, edit, delete, and categorize expenses
-- **Budget Management**: Create and track budgets by category
-- **Transaction History**: Comprehensive view of all financial transactions
-- **Savings Goals**: Set and track progress towards savings targets
-- **Financial Reports**: Visual analytics with charts and graphs
-- **AI-powered Assistant**: Get answers to financial questions
+### Dashboard
+![Dashboard](https://placeholder-for-dashboard-screenshot.com)
+The dashboard provides a comprehensive overview of your financial health, with key metrics like total balance, monthly spending, savings, and investments. Interactive charts visualize spending patterns and category breakdown.
 
-## Technology Stack
+### Profile Page
+![Profile](https://placeholder-for-profile-screenshot.com)
+The profile page allows users to manage their personal information and account settings.
+
+### Authentication
+![Authentication](https://placeholder-for-auth-screenshot.com)
+Secure login and signup pages with email authentication.
+
+## ✨ Features
+
+### User Authentication
+- **Secure Signup and Login**: Create an account with email/password
+- **User Profiles**: Personalized experience with user profile management
+- **Session Persistence**: Stay logged in across browser sessions
+
+### Dashboard
+- **Financial Overview**: At-a-glance view of financial health with key metrics
+- **Spending Trends**: Interactive line chart showing spending patterns over time
+- **Spending Categories**: Visual breakdown of expenses by category
+- **Budget Progress**: Track your progress against monthly budgets
+- **Recent Transactions**: Quick view of your latest financial activities
+
+### Expense Tracking
+- **Add, Edit, Delete**: Full CRUD operations for expense management
+- **Categorization**: Organize expenses by customizable categories
+- **Filtering and Sorting**: Find expenses by date, amount, or category
+
+### Budget Management
+- **Monthly Budgets**: Set overall monthly spending limits
+- **Category Budgets**: Allocate specific amounts to each spending category
+- **Progress Tracking**: Visual indicators of budget utilization
+- **Alerts**: Notifications when approaching or exceeding budget limits
+
+### Transaction History
+- **Comprehensive Log**: View all financial transactions in one place
+- **Transaction Details**: Access full information about each transaction
+- **Search and Filter**: Find specific transactions quickly
+
+### Savings Goals
+- **Goal Setting**: Create and track progress towards financial goals
+- **Target Dates**: Set deadlines for achieving savings targets
+- **Progress Tracking**: Visual representation of progress towards goals
+
+### Financial Reports
+- **Custom Date Ranges**: Generate reports for specific time periods
+- **Category Analysis**: Break down spending by category
+- **Trend Identification**: Spot patterns in your financial behavior
+- **Data Export**: Download reports for offline analysis
+
+### AI-powered Assistant
+- **Financial Questions**: Get answers to your money-related questions
+- **Personalized Advice**: Receive tailored financial guidance
+- **Term Explanations**: Understand financial concepts and terminology
+
+## 🔧 Technology Stack
 
 ### Frontend
-- **React** - UI library
-- **TypeScript** - Type safety
-- **Vite** - Development environment
-- **React Router** - Client-side routing
-- **Tailwind CSS** - Utility-first styling
-- **shadcn/ui** - UI component library
-- **Recharts** - Data visualization
-- **React Query** - Data fetching and caching
+- **React**: UI library for building interactive interfaces
+- **TypeScript**: Type safety and improved developer experience
+- **Vite**: Modern build tool for faster development
+- **React Router**: Seamless client-side routing
+- **Tailwind CSS**: Utility-first styling approach
+- **shadcn/ui**: High-quality UI component library
+- **Recharts**: Data visualization for financial insights
+- **Tanstack Query**: Data fetching, caching, and synchronization
 
-### Backend (Planned Implementation with Supabase)
-- **Supabase Authentication** - User management
-- **Supabase Database** - PostgreSQL database for data storage
-- **Supabase Functions** - Serverless functions for API endpoints
+### Backend
+- **Supabase Authentication**: Secure user management
+- **Supabase Database**: PostgreSQL database with robust RLS policies
+- **Supabase Storage**: File storage capabilities
 
-## Project Structure
+## 🛠️ Architecture
 
-```
-src/
-├── components/     # Reusable UI components
-│   ├── layout/     # Layout components (Sidebar, Header)
-│   └── ui/         # UI components from shadcn
-├── hooks/          # Custom React hooks
-├── lib/            # Utility functions
-├── pages/          # Page components
-└── utils/          # Helper utilities
-```
+SmartSpendHQ follows a modern, component-based architecture:
 
-## Getting Started
+- **Pages**: Top-level route components representing different sections
+- **Layout Components**: Consistent structure across the application
+- **Feature Components**: Self-contained functional units
+- **UI Components**: Reusable interface elements
+- **Custom Hooks**: Encapsulated logic and state management
+- **Service Layer**: API communication and data transformation
+- **Utility Functions**: Helper methods for common operations
+
+## 📋 Database Schema
+
+### Key Tables
+
+**profiles**
+- `id`: UUID (references auth.users)
+- `full_name`: TEXT
+- `created_at`: TIMESTAMP
+- `updated_at`: TIMESTAMP
+
+Additional tables for expenses, budgets, transactions, and savings goals will be implemented as the application evolves.
+
+## 🚀 Getting Started
 
 ### Prerequisites
 
 - Node.js (v14 or later)
-- npm or yarn
+- npm, yarn, or pnpm
 
 ### Installation
 
@@ -64,9 +126,12 @@ cd smartspendhq
 npm install
 # or
 yarn install
+# or
+pnpm install
 ```
 
-3. Create .env file:
+3. Set up environment variables:
+Create a `.env` file with:
 ```
 VITE_SUPABASE_URL=your_supabase_url
 VITE_SUPABASE_ANON_KEY=your_supabase_anon_key
@@ -77,39 +142,48 @@ VITE_SUPABASE_ANON_KEY=your_supabase_anon_key
 npm run dev
 # or
 yarn dev
+# or
+pnpm dev
 ```
 
-## Connecting to Supabase
+5. Open your browser and navigate to `http://localhost:5173`
 
-To fully utilize SmartSpendHQ's features, you need to connect it to Supabase:
+## 🔒 Authentication Setup
 
-1. Create a Supabase project at https://supabase.com
-2. Set up the following tables in your Supabase database:
-   - users
-   - expenses
-   - budgets
-   - transactions
-   - saving_goals
-3. Set up authentication in the Supabase dashboard
-4. Update the .env file with your Supabase credentials
+SmartSpendHQ uses Supabase Authentication. For development:
 
-## Planned Features
+1. Create a Supabase project at [https://supabase.com](https://supabase.com)
+2. Enable Email/Password authentication
+3. (Optional) Disable email verification for faster testing
+4. Update your `.env` file with your Supabase credentials
 
-- **Bank Account Integration**: Connect to bank accounts to automatically import transactions
-- **Recurring Expenses**: Set up and track recurring expenses
-- **Notifications**: Get alerts for budget thresholds and goals
-- **Data Export**: Export financial data in various formats
-- **Multi-currency Support**: Support for multiple currencies
-- **Mobile App**: React Native mobile application
+## 🔄 Development Workflow
 
-## Contributing
+1. Feature branches: Use `feature/`, `bugfix/`, `hotfix/` prefixes
+2. Pull requests: Include description and screenshots
+3. Code review: Required before merging
+4. Testing: Ensure all tests pass before submission
 
-1. Fork the repository
-2. Create your feature branch: `git checkout -b feature/amazing-feature`
-3. Commit your changes: `git commit -m 'Add some amazing feature'`
-4. Push to the branch: `git push origin feature/amazing-feature`
-5. Open a Pull Request
+## 📚 Documentation
 
-## License
+For more detailed information:
 
-This project is licensed under the MIT License.
+- [User Manual](./UserManual.md): End-user guide to application features
+- [Developer Guide](./DeveloperGuide.md): Technical documentation for contributors
+
+## 🔮 Future Roadmap
+
+- **Bank Integration**: Connect to financial institutions
+- **Recurring Expenses**: Support for regular payments
+- **Bill Reminders**: Notifications for upcoming payments
+- **Financial Insights**: AI-powered analysis of spending habits
+- **Multi-currency Support**: Handle different currencies
+- **Mobile Application**: Native mobile experience
+
+## 👥 Contributing
+
+Contributions are welcome! Please check the [contributing guidelines](./CONTRIBUTING.md) for more information.
+
+## 📄 License
+
+This project is licensed under the MIT License - see the [LICENSE](./LICENSE) file for details.
